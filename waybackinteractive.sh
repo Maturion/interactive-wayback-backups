@@ -13,13 +13,11 @@ do
     cp "${file}" ".phparchiv"/${filename}/"${filename}-${extension}.txt"
 
     #Create $filename.php if it doesn't exist
+    cp -n "_interactive_php_archive.php" "${filename}.php"
+    echo ${filename}.${extension}
+    rm ${filename}.${extension}
 
-    if [ ! -f $filename ]
-    then
-        cp -n "_interactive_php_archive.php" "${filename}.php"
-        echo ${filename}.${extension}
-        rm $file
-echo $file
-    fi
 done
 
+rm "_interactive_php_archive.php"
+rm  -- "$0"

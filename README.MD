@@ -9,3 +9,9 @@ If this script detects a filename containing GET parameters, it will move the re
 
 ## Usage
 Simply paste both files in a directory and execute waybackinteractive.sh. It will act on all PHP files containing GET parameters and remove itself after all work is done. The script doesn't run recursively yet.
+
+This script was hastly written, so don't complain about the code.
+
+## Long term goals:
+* Support any kind of server-side scripting language, not just PHP
+* Run recursively
