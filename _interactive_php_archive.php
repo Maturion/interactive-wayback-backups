@@ -21,22 +21,34 @@ $finalfilename = ".phparchiv/" . $filedir . "/" . $filename . ".txt";
 $filecontent = file_get_contents($finalfilename);
 
 
-if($filecontent === false) {
+/* Fallback URLs - If the current URL isn't archived, try if there's another copy of it */
+$url_list = [];
+$url_list[] = $finalfilename;
 
-    /* Customizations for phpBB-based forums */
-    if (strpos($finalfilename, '&amp') !== false) {
-        $finalfilename = (substr($finalfilename, 0, -8) . '.txt');
-    }
-    if (strpos($finalfilename, 'sid=') !== false) {
+/* Customizations for phpBB-based forums */
 
-        $finalfilename = preg_replace('/(?<=sid=)(.*)(?=.txt|&)/', '', $finalfilename);
-        $sidreplacements = ['&sid=', '?sid='];
-        $finalfilename = str_replace($sidreplacements, '', $finalfilename);
+if (strpos($finalfilename, 'sid=') !== false) {
+    $finalfilename = preg_replace('/(?<=sid=)(.*)(?=.txt|&)/', '', $finalfilename);
+    $sidreplacements = ['&sid=', '?sid='];
+    $url_list[] = str_replace($sidreplacements, '', $finalfilename);
+}
+
+if (strpos($finalfilename, '&amp') === false) {
+    $url_list = array_merge($url_list, array_map(function ($a) { return (substr($a, 0, -4) . '&amp;amp.txt'); }, $url_list));
+}
+
+/* End of phpBB fixes */
+
+$i = 0;
+for($i=0; $i < sizeof($url_list); $i++) {
+
+    $filecontent = file_get_contents(htmlspecialchars($url_list[$i]));
+    if($filecontent !== false) {
+        break;   
     }
- 
-    $filecontent = file_get_contents($finalfilename);
-    $filecontent = ($filecontent !== false) ? $filecontent : '<h1>Nicht gefunden</h1>';
     
 }
+var_dump($url_list);
+$filecontent = ($filecontent !== false) ? $filecontent : '<h1>Not found</h1>';
 
 echo $filecontent;
