@@ -41,7 +41,6 @@ if (strpos($finalfilename, '&amp') === false) {
 
 $i = 0;
 for($i=0; $i < sizeof($url_list); $i++) {
-    var_dump($filecontent);
     $filecontent = file_get_contents($url_list[$i]);
     if($filecontent !== false) {
         break;   
