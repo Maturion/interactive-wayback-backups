@@ -1,4 +1,4 @@
-# Interactive Wayback Backups
+# Interactive Wayback Machine Backups
 ## About
 This script allows for easy self-hosting of interactive PHP websites downloaded via the [Wayback Machine Downloader](https://github.com/hartator/wayback-machine-downloader). 
 
