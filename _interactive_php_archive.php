@@ -17,7 +17,7 @@ foreach($_GET as $param => $value) {
     $i++;
 }
 
-$finalfilename = "phparchiv/" . $filedir . "/" . $filename . ".txt";
+$finalfilename = ".phparchiv/" . $filedir . "/" . $filename . ".txt";
 $filecontent = file_get_contents($finalfilename);
 
 if($filecontent === false) {
