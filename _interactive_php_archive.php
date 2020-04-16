@@ -48,7 +48,7 @@ for($i=0; $i < sizeof($url_list); $i++) {
     }
     
 }
-var_dump($url_list);
+
 $filecontent = ($filecontent !== false) ? $filecontent : '<h1>Not found</h1>';
 
 echo $filecontent;
