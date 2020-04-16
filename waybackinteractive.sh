@@ -20,4 +20,5 @@ do
 done
 
 rm "_interactive_php_archive.php"
+rm "README.MD"
 rm  -- "$0"
