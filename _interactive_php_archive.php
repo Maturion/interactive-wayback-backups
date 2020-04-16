@@ -34,19 +34,18 @@ if (strpos($finalfilename, 'sid=') !== false) {
 }
 
 if (strpos($finalfilename, '&amp') === false) {
-    $url_list = array_merge($url_list, array_map(function ($a) { return (substr($a, 0, -4) . '&amp;amp.txt'); }, $url_list));
+    $url_list = array_merge($url_list, array_map(function ($a) { return (substr($a, 0, -4) . '&amp.txt'); }, $url_list));
 }
 
 /* End of phpBB fixes */
 
 $i = 0;
 for($i=0; $i < sizeof($url_list); $i++) {
-
-    $filecontent = file_get_contents(htmlspecialchars($url_list[$i]));
+    var_dump($filecontent);
+    $filecontent = file_get_contents($url_list[$i]);
     if($filecontent !== false) {
         break;   
-    }
-    
+    }  
 }
 
 $filecontent = ($filecontent !== false) ? $filecontent : '<h1>Not found</h1>';
